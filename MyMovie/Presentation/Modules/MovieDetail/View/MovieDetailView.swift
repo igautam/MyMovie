@@ -20,18 +20,14 @@ struct MovieDetailView<ViewModel>: View where ViewModel: ViewModelInterface {
     }
     
     var body: some View {
-        ZStack {
-            VStack {
-                ImageView(imageUrlStr: movie.movieImageURL)
-                    .frame(width: 100, height: 100)
-                    .cornerRadius(28)
-                Text("\(movie.title ?? "")")
-                    .font(.system(size: 24, weight: .bold))
-            }
+        VStack(alignment: .center) {
+            Text("\(movie.title ?? "")")
+                .font(.system(size: 24, weight: .bold))
+            ImageView(imageUrlStr: movie.backdropMovieImageURL)
+            Text(movie.overview ?? "")
+            Spacer()
         }
         .padding()
-        .frame(maxWidth: .infinity)
-        .ignoresSafeArea(edges: .top)
         .onAppear {
             print("OnAppear call")
         }

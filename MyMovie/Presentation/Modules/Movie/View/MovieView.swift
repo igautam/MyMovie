@@ -17,53 +17,25 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
         self.viewModel = viewModel
     }
     
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
         NavigationStack(path: $router.navPath) {
-            VStack {
-                switch viewModel.state {
-                case .idle:
-                    Text("My Movies")
-                case .loading:
-                    ProgressView()
-                case .loaded(let movies):
-                    List {
-                        ForEach(movies) { movie in
-                            HStack {
-                                ImageView(imageUrlStr: movie.movieImageURL)
-                                    .frame(width: 100, height: 100)
-                                    .cornerRadius(28)
-                                    .onTapGesture {
-                                        router.navigate(to: Destination.movieDetail(movie: movie))
-                                    }
-                                VStack(alignment: .leading) {
-                                    Text("\(movie.title ?? "")")
-                                        .font(.system(size: 24, weight: .bold))
-    //                                Text("\(movie.overview ?? "")")
-                                }
-                            }
-                            
-                        }
+            contentView()
+                .navigationTitle("Movies")
+                .navigationDestination(for: Destination.self) { destination in
+                    switch destination {
+                    case let .movieDetail(movie):
+                        MovieDetailView(
+                            movie: movie,
+                            viewModel: MovieDetailViewModel(
+                                movieService: MovieDetailService(apiClientService: APIClientService())))
                     }
-                    .listStyle(PlainListStyle())
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding(.top)
-                case .error(let error):
-                    Text("Error ... : \(error)")
                 }
-            }
-            .padding()
-            .frame(maxWidth: .infinity)
         }
-        .navigationDestination(for: Destination.self, destination: { destination in
-            switch destination {
-            case let .movieDetail(movie):
-                MovieDetailView(
-                    movie: movie,
-                    viewModel: MovieDetailViewModel(
-                        movieService: MovieDetailService(apiClientService: APIClientService())))
-            }
-        })
-        .ignoresSafeArea(edges: .top)
         .onAppear {
             print("OnAppear call")
         }
@@ -79,32 +51,32 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
     
     @ViewBuilder
     func contentView() -> some View {
-        switch viewModel.state {
-        case .idle:
-            Text("My Movies")
-        case .loading:
-            ProgressView()
-        case .loaded(let movies):
-            List {
-                ForEach(movies) { movie in
-                    HStack {
-                        ImageView(imageUrlStr: movie.movieImageURL)
-                            .frame(width: 100, height: 100)
-                            .cornerRadius(28)
-                        VStack(alignment: .leading) {
-                            Text("\(movie.title ?? "")")
-                                .font(.system(size: 24, weight: .bold))
-//                            Text("\(movie.overview ?? "")")
+        ScrollView(.vertical, showsIndicators: false) {
+            LazyVGrid(columns: columns, spacing: 20) {
+                switch viewModel.state {
+                case .idle:
+                    EmptyView()
+                case .loading:
+                    ProgressView()
+                case .loaded(let movies):
+                    ForEach(movies) { movie in
+                        HStack {
+                            MovieCardView(movie: movie)
+                                .onTapGesture {
+                                    router.navigate(to: Destination.movieDetail(movie: movie))
+                                }
                         }
                     }
+                    
+                case .error(let error):
+                    Text("Error ... : \(error)")
                 }
-            }.backgroundStyle(.blue)
-        case .error(let error):
-            Text("Error ... : \(error)")
+            }
+            
         }
     }
 }
 
 #Preview {
-    ContentView(viewModel: MockMovieViewModel(movieService: MovieService(apiClientService: APIClientService())))
+    MovieView(viewModel: MockMovieViewModel())
 }
