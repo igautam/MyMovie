@@ -26,6 +26,8 @@ Test cases are also written and executed.
 ViewModel is mockable because of protocol interface.
 ViewModel layer test cases are done with mock responses and mock errors.
 Mock MyMovie Test object is created in order to perform test scenarios.
+
+
 <img width="301" height="643" alt="Screenshot 2025-08-21 at 4 57 27 PM" src="https://github.com/user-attachments/assets/6156b2f8-38d6-4315-b751-b370d7ca5548" />
 <img width="301" height="649" alt="Screenshot 2025-08-21 at 4 58 08 PM" src="https://github.com/user-attachments/assets/67c66e12-4ea5-4e03-ba57-13ca089c5271" />
 
