@@ -55,7 +55,7 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
             LazyVGrid(columns: columns, spacing: 20) {
                 switch viewModel.state {
                 case .idle:
-                    EmptyView()
+                    ProgressView()
                 case .loading:
                     ProgressView()
                 case .loaded(let movies):
