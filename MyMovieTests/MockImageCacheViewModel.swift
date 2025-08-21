@@ -6,7 +6,6 @@
 //
 import Foundation
 import SwiftUI
-import Combine
 
 @testable import MyMovie
 
@@ -14,7 +13,6 @@ class MockImageCacheViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var image: UIImage? = nil
     let imageUrlStr:String?
-    var cancellable = Set<AnyCancellable>()
     
     init(imageUrlStr: String?) {
         self.imageUrlStr = imageUrlStr

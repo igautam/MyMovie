@@ -25,11 +25,6 @@ struct MovieDetailView<ViewModel>: View where ViewModel: ViewModelInterface {
             Spacer()
         }
         .padding()
-        .onAppear {
-            print("OnAppear call")
-        }
-        .task {
-        }
     }
 }
 

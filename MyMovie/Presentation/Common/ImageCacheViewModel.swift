@@ -14,7 +14,6 @@ class ImageCacheViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var image: UIImage? = nil
     let imageUrlStr:String?
-    var cancellable = Set<AnyCancellable>()
     
     init(imageUrlStr: String?) {
         self.imageUrlStr = imageUrlStr

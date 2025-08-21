@@ -7,14 +7,13 @@
 
 import Testing
 import XCTest
-import Combine
+
 @testable import MyMovie
 
 
 @MainActor
 final class MovieViewModelTest: XCTestCase {
     var sut: MockMovieViewModel?
-    var cancellable = Set<AnyCancellable>()
     var movies: [Movie] = []
     
     override func setUp() {
