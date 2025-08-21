@@ -16,12 +16,20 @@ struct Movie: Decodable, Identifiable, Hashable {
     var title: String?
     var overview: String?
     var poster_path: String?
+    var backdrop_path: String?
     
     var movieImageURL: String? {
         guard let posterPath = poster_path else {
             return nil
         }
         return "https://image.tmdb.org/t/p/w154\(posterPath)"
+    }
+    
+    var backdropMovieImageURL: String? {
+        guard let backdropPath = backdrop_path else {
+            return nil
+        }
+        return "https://image.tmdb.org/t/p/w1280\(backdropPath)"
     }
 }
 
