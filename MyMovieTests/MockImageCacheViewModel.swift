@@ -1,16 +1,16 @@
 //
-//  ImageCacheViewModel.swift
+//  MockImageCacheViewModel.swift
 //  MyMovie
 //
 //  Created by Rajesh Kumar on 21/08/25.
 //
-
 import Foundation
+import SwiftUI
 import Combine
-import UIKit
 
-@MainActor
-class ImageCacheViewModel: ObservableObject {
+@testable import MyMovie
+
+class MockImageCacheViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var image: UIImage? = nil
     let imageUrlStr:String?

@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol MovieDetailServiceInterface {
+    //TODO: fetch geners
+}
+
 final class MovieDetailService: MovieDetailServiceInterface {
     
     private let apiClientService: APIClientServiceInterface
