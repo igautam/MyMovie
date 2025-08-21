@@ -10,13 +10,14 @@ import SwiftUI
 
 @MainActor
 class MovieDetailViewModel: ViewModelInterface {
-    private let movieService: MovieDetailServiceInterface
+    private let movieDetailService: MovieDetailServiceInterface
     @Published var state: DataLoadingState = .idle
 
-    init(movieService: MovieDetailServiceInterface) {
-        self.movieService = movieService
+    init(movieDetailService: MovieDetailServiceInterface) {
+        self.movieDetailService = movieDetailService
     }
     
     func loadData() async throws {
+        //TODO: Fetch geners data through movieDetailService
     }
 }

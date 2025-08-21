@@ -6,5 +6,5 @@
 //
 
 protocol MovieDetailServiceInterface {
-    // fetch geners
+    //TODO: fetch geners
 }

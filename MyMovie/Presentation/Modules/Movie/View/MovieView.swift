@@ -11,8 +11,6 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
     @ObservedObject var viewModel: ViewModel
     @StateObject var router = Router()
     
-    let mockItems = ["Item 1", "Item 2", "Item 3"]
-    
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
@@ -32,7 +30,7 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
                         MovieDetailView(
                             movie: movie,
                             viewModel: MovieDetailViewModel(
-                                movieService: MovieDetailService(apiClientService: APIClientService())))
+                                movieDetailService: MovieDetailService(apiClientService: APIClientService())))
                     }
                 }
         }
@@ -54,10 +52,11 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: 20) {
                 switch viewModel.state {
-                case .idle:
+                case .idle, .loading:
+                    Spacer()
                     ProgressView()
-                case .loading:
-                    ProgressView()
+                        .scaleEffect(2.0)
+                    Spacer()
                 case .loaded(let movies):
                     ForEach(movies) { movie in
                         HStack {

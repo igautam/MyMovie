@@ -22,6 +22,7 @@ struct MyMovieApp: App {
         }
     }
 }
+
 class Configuration: ObservableObject {
     let apiClientService: APIClientServiceInterface
     
