@@ -49,15 +49,15 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
     
     @ViewBuilder
     func contentView() -> some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVGrid(columns: columns, spacing: 20) {
-                switch viewModel.state {
-                case .idle, .loading:
-                    Spacer()
-                    ProgressView()
-                        .scaleEffect(2.0)
-                    Spacer()
-                case .loaded(let movies):
+        switch viewModel.state {
+        case .idle, .loading:
+            Spacer()
+            ProgressView()
+                .scaleEffect(2.0)
+            Spacer()
+        case .loaded(let movies):
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(movies) { movie in
                         HStack {
                             MovieCardView(movie: movie)
@@ -67,11 +67,10 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
                         }
                     }
                     
-                case .error(let error):
-                    Text("Error ... : \(error)")
                 }
             }
-            
+        case .error(_):
+            EmptyView()
         }
     }
 }
