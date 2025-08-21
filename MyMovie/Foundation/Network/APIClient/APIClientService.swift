@@ -14,7 +14,7 @@ final class APIClientService: APIClientServiceInterface {
         }
         let urlRequest = URLRequest(url: url)
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
-        guard let jsonResponse = try? JSONDecoder().decode(T.self, from: data), (response as? HTTPURLResponse)?.statusCode == 200 else {
+        guard let jsonResponse = try? JSONDecoder().decode(T.self, from: data), (response as? HTTPURLResponse)?.statusCode == HttpStatusCode.success.rawValue else {
             throw APIError.invalidData
         }
         return jsonResponse
