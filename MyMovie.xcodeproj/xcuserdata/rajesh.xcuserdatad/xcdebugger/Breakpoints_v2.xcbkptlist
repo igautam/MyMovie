@@ -7,47 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "107EC988-6242-4EAD-9579-01D5E1103C90"
+            uuid = "009EBB6F-9A5F-46CB-AD5D-3C2974E26213"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMovie/Presentation/Modules/Movie/View/MovieView.swift"
+            filePath = "MyMovie/Presentation/Modules/MovieDetail/View/MovieDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "107EC988-6242-4EAD-9579-01D5E1103C90 - 4bbc26a3e24b32c3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (MyMovie.Destination) -&gt; MyMovie.MovieDetailView&lt;MyMovie.MovieDetailViewModel&gt; in MyMovie.MovieView.body.getter : some"
-                  moduleName = "MyMovie.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rajesh/Desktop/Work/Himanshu/TCSTest/MyMovie/MyMovie/Presentation/Modules/Movie/View/MovieView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59">
-               </Location>
-               <Location
-                  uuid = "107EC988-6242-4EAD-9579-01D5E1103C90 - 4bbc26a3e24b32c3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (MyMovie.Destination) -&gt; MyMovie.MovieDetailView&lt;MyMovie.MovieDetailViewModel&gt; in MyMovie.MovieView.body.getter : some"
-                  moduleName = "MyMovie.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rajesh/Desktop/Work/Himanshu/TCSTest/MyMovie/MyMovie/Presentation/Modules/Movie/View/MovieView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59">
-               </Location>
-            </Locations>
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init(movie:viewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A705A047-43DF-4378-908B-C2FC84F7C2B7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMovie/Presentation/Common/Router.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "navigate(to:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

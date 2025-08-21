@@ -8,3 +8,4 @@
 protocol MovieServiceInterface {
     func fetchMovies() async throws -> [Movie]
 }
+

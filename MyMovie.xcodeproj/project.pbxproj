@@ -29,6 +29,25 @@
 		188B4C782E5702A300066D11 /* MyMovieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMovieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		188B4CDE2E572ADC00066D11 /* Exceptions for "MyMovieTests" folder in "MyMovie" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MockMovieService.swift,
+				MockMovieViewModel.swift,
+			);
+			target = 188B4C602E5702A100066D11 /* MyMovie */;
+		};
+		188B4CDF2E572ADC00066D11 /* Exceptions for "MyMovieTests" folder in "MyMovieTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MockMovieService.swift,
+				MockMovieViewModel.swift,
+			);
+			target = 188B4C6D2E5702A300066D11 /* MyMovieTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		188B4C632E5702A100066D11 /* MyMovie */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -37,6 +56,10 @@
 		};
 		188B4C712E5702A300066D11 /* MyMovieTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				188B4CDE2E572ADC00066D11 /* Exceptions for "MyMovieTests" folder in "MyMovie" target */,
+				188B4CDF2E572ADC00066D11 /* Exceptions for "MyMovieTests" folder in "MyMovieTests" target */,
+			);
 			path = MyMovieTests;
 			sourceTree = "<group>";
 		};

@@ -1,0 +1,29 @@
+//
+//  MockMovieService.swift
+//  MyMovie
+//
+//  Created by Rajesh Kumar on 21/08/25.
+//
+
+import Foundation
+
+final class MockMovieService: MovieServiceInterface {
+    private var apiClientService: APIClientServiceInterface = APIClientService()
+    var error: Error?
+    let movies: [Movie]
+    
+    init(movies: [Movie], apiClientService: APIClientServiceInterface, error: Error? = nil) {
+        self.apiClientService = apiClientService
+        self.movies = movies
+        self.error = error
+    }
+    
+    func fetchMovies() async throws -> [Movie] {
+        if let error = error {
+            throw error
+        }
+        try await Task.sleep(nanoseconds: 1_000_000_000)
+        return movies
+    }
+    
+}

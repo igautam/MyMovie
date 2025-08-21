@@ -19,8 +19,5 @@ final class MovieService: MovieServiceInterface {
         let urlString = Environment.current.apiURL
         let response = try await apiClientService.request(urlString, for: PaginatedResponse<Movie>.self)
         return response.results ?? []
-    }
-    
-    //https://raw.githubusercontent.com/AxxessTech/Mobile-Projects/master/challenge.json
-    
+    }    
 }

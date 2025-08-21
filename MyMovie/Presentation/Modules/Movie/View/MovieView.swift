@@ -78,5 +78,9 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
 }
 
 #Preview {
-    MovieView(viewModel: MockMovieViewModel())
+    let movie1 = Movie(id: 755898, title: "War of the Worlds_1",  overview: "Will Radford is a top analyst for Homeland Security who tracks potential threats", poster_path: "/yvirUYrva23IudARHn3mMGVxWqM.jpg")
+    let movie2 = Movie(id: 575265, title: "Mission: Impossible - The Final Reckoning",  overview: "Ethan Hunt and team continue their search for the terrifying AI known as the Entity — which has infiltrated intelligence networks all over the globe — wit", poster_path: "/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg")
+    
+    let service = MockMovieService(movies: [movie1, movie2], apiClientService: APIClientService())
+    MovieView(viewModel: MockMovieViewModel(movieService: service))
 }
