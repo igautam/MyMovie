@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MovieDetailServiceInterface {
-    //TODO: fetch geners
+    // TODO: fetch geners
 }
 
 final class MovieDetailService: MovieDetailServiceInterface {

@@ -7,31 +7,22 @@
 
 import SwiftUI
 
-struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
-    @ObservedObject var viewModel: ViewModel
+struct MovieView: View {
+    @ObservedObject var viewModel: MovieViewModel
     @StateObject var router = Router()
-    
-    init(viewModel: ViewModel) {
+    init(viewModel: MovieViewModel) {
         self.viewModel = viewModel
     }
-    
     private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
     var body: some View {
         NavigationStack(path: $router.navPath) {
             contentView()
                 .navigationTitle("Movies")
                 .navigationDestination(for: Destination.self) { destination in
-                    switch destination {
-                    case let .movieDetail(movie):
-                        MovieDetailView(
-                            movie: movie,
-                            viewModel: MovieDetailViewModel(
-                                movieDetailService: MovieDetailService(apiClientService: APIClientService())))
-                    }
+                    self.viewModel.view(for: destination)
                 }
         }
         .onAppear {
@@ -46,9 +37,8 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
             }
         }
     }
-    
     @ViewBuilder
-    func contentView() -> some View {
+    private func contentView() -> some View {
         switch viewModel.state {
         case .idle, .loading:
             Spacer()
@@ -66,19 +56,26 @@ struct MovieView<ViewModel>: View where ViewModel: ViewModelInterface {
                                 }
                         }
                     }
-                    
                 }
             }
-        case .error(_):
+        case .error:
             EmptyView()
         }
     }
 }
 
 #Preview {
-    let movie1 = Movie(id: 755898, title: "War of the Worlds_1",  overview: "Will Radford is a top analyst for Homeland Security who tracks potential threats", poster_path: "/yvirUYrva23IudARHn3mMGVxWqM.jpg")
-    let movie2 = Movie(id: 575265, title: "Mission: Impossible - The Final Reckoning",  overview: "Ethan Hunt and team continue their search for the terrifying AI known as the Entity — which has infiltrated intelligence networks all over the globe — wit", poster_path: "/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg")
+    let movie1 = Movie(
+        id: 755898,
+        title: "War of the Worlds_1",
+        overview: "Will Radford is a top analyst for Homeland Security who tracks potential threats",
+        posterPath: "/yvirUYrva23IudARHn3mMGVxWqM.jpg")
+    let movie2 = Movie(
+        id: 575265,
+        title: "Mission: Impossible - The Final Reckoning",
+        overview: "Ethan Hunt and team continue their search for the terrifying AI",
+        posterPath: "/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg")
     
     let service = MockMovieService(movies: [movie1, movie2], apiClientService: APIClientService())
-    MovieView(viewModel: MockMovieViewModel(movieService: service))
+    MovieView(viewModel: MovieViewModel(movieService: service))
 }

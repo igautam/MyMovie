@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovieDetailView<ViewModel>: View where ViewModel: ViewModelInterface {
     @ObservedObject var viewModel: ViewModel
-    var movie: Movie
+    private var movie: Movie
     
     init(movie: Movie, viewModel: ViewModel) {
         self.movie = movie
@@ -20,7 +20,7 @@ struct MovieDetailView<ViewModel>: View where ViewModel: ViewModelInterface {
         VStack(alignment: .center) {
             Text("\(movie.title ?? "")")
                 .font(.system(size: 24, weight: .bold))
-            ImageView(imageUrlStr: movie.backdropMovieImageURL)
+            ImageView(imageUrl: movie.backdropMovieImageURL!)
             Text(movie.overview ?? "")
             Spacer()
         }
@@ -29,5 +29,12 @@ struct MovieDetailView<ViewModel>: View where ViewModel: ViewModelInterface {
 }
 
 #Preview {
-    MovieDetailView(movie: Movie(), viewModel: MovieDetailViewModel(movieDetailService: MovieDetailService(apiClientService: APIClientService())))
+    MovieDetailView(
+        movie: Movie(),
+        viewModel: MovieDetailViewModel(
+            movieDetailService: MovieDetailService(
+                apiClientService: APIClientService()
+            )
+        )
+    )
 }

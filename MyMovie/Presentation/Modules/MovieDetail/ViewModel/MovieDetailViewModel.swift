@@ -18,6 +18,6 @@ class MovieDetailViewModel: ViewModelInterface {
     }
     
     func loadData() async throws {
-        //TODO: Fetch geners data through movieDetailService
+        // TODO: Fetch geners data through movieDetailService
     }
 }
