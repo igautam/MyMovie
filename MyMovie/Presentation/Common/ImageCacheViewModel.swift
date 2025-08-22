@@ -10,20 +10,22 @@ import Combine
 import UIKit
 
 @MainActor
-class ImageCacheViewModel: ObservableObject {
+final class ImageCacheViewModel: ObservableObject {
     @Published var isLoading: Bool = false
-    @Published var image: UIImage? = nil
-    let imageUrlStr:String?
+    @Published var image: UIImage?
+    private let imageUrl: String
     
-    init(imageUrlStr: String?) {
-        self.imageUrlStr = imageUrlStr
+    init(imageUrl: String) {
+        self.imageUrl = imageUrl
         Task {
             try await loadImage()
         }
     }
     
-    func loadImage() async throws {
-        guard let imageURL = URL(string: imageUrlStr ?? "") else { return }
+    private func loadImage() async throws {
+        guard let imageURL = URL(string: imageUrl) else {
+            throw APIError.invalidURL
+        }
         let image = try await ImageCacheManager.shared.loadImage(for: imageURL)
         self.image = image
     }
