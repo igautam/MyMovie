@@ -17,7 +17,9 @@ class ImageCacheManager {
             return cachedImage
         }
         let (data, response) = try await URLSession.shared.data(from: url, delegate: nil)
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == HttpStatusCode.success.rawValue else {
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == HttpStatusCode.success.rawValue
+        else {
             throw APIError.invalidURL
         }
         guard let image = UIImage(data: data) else {
@@ -26,7 +28,6 @@ class ImageCacheManager {
         self.cacheImage(image, for: url)
         return image
     }
-    
     
     func cacheImage(_ image: UIImage, for url: URL) {
         self.cache.setObject(image, forKey: NSString(string: url.absoluteString))
