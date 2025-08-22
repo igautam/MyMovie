@@ -17,5 +17,12 @@ class MovieDetailViewModel: ObservableObject {
         self.movieDetailService = movieDetailService
     }
     
+    enum DataLoadingState {
+        case idle
+        case loading
+        case loaded([Movie])
+        case error(Error)
+    }
+
     func loadData() async throws { }
 }

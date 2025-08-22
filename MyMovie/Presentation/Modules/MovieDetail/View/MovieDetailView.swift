@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieDetailView: View {
     @ObservedObject private var viewModel: MovieDetailViewModel
     @EnvironmentObject private var router: Router
-    private var movie: Movie
+    private let movie: Movie
     
     init(movie: Movie, viewModel: MovieDetailViewModel) {
         self.movie = movie

@@ -17,6 +17,13 @@ final class MovieViewModel: ObservableObject {
         self.movieService = movieService
     }
     
+    enum DataLoadingState {
+        case idle
+        case loading
+        case loaded([Movie])
+        case error(Error)
+    }
+    
     func loadData() async throws {
         state = .loading
         let movies = try await movieService.fetchMovies()
