@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 struct ImageView: View {
-    @StateObject private var loader:ImageCacheViewModel
+    @StateObject private var loader: ImageCacheViewModel
     
-    init(imageUrlStr: String?) {
-        _loader = StateObject(wrappedValue: ImageCacheViewModel(imageUrlStr: imageUrlStr))
+    init(imageUrl: String) {
+        _loader = StateObject(wrappedValue: ImageCacheViewModel(imageUrl: imageUrl))
     }
     
     var body: some View {

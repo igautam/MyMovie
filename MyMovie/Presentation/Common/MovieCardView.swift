@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct MovieCardView: View {
-    private var movie: Movie
+    private let movie: Movie
 
     init(movie: Movie) {
         self.movie = movie
@@ -15,10 +15,12 @@ struct MovieCardView: View {
 
     public var body: some View {
         VStack {
-            ImageView(imageUrlStr: movie.movieImageURL)
-                .frame(width: 150, height: 200)
-                .cornerRadius(4)
-                .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
+            if let imageUrl = movie.movieImageURL {
+                ImageView(imageUrl: imageUrl)
+                    .frame(width: 150, height: 200)
+                    .cornerRadius(4)
+                    .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
+            }
             Text(movie.title ?? "")
                 .lineLimit(2)
                 .font(.system(size: 13, weight: .semibold))
