@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct MovieDetailView<ViewModel>: View where ViewModel: ViewModelInterface {
-    @ObservedObject var viewModel: ViewModel
+struct MovieDetailView: View {
+    @ObservedObject private var viewModel: MovieDetailViewModel
+    @EnvironmentObject private var router: Router
     private var movie: Movie
     
-    init(movie: Movie, viewModel: ViewModel) {
+    init(movie: Movie, viewModel: MovieDetailViewModel) {
         self.movie = movie
         self.viewModel = viewModel
     }
@@ -25,6 +26,9 @@ struct MovieDetailView<ViewModel>: View where ViewModel: ViewModelInterface {
             Spacer()
         }
         .padding()
+        .onAppear {
+            print(router)
+        }
     }
 }
 

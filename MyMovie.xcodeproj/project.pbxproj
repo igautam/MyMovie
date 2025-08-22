@@ -33,16 +33,14 @@
 		188B4CDE2E572ADC00066D11 /* Exceptions for "MyMovieTests" folder in "MyMovie" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				MockMovieService.swift,
-				MockMovieViewModel.swift,
+				ViewModel/MockMovieViewModel.swift,
 			);
 			target = 188B4C602E5702A100066D11 /* MyMovie */;
 		};
 		188B4CDF2E572ADC00066D11 /* Exceptions for "MyMovieTests" folder in "MyMovieTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				MockMovieService.swift,
-				MockMovieViewModel.swift,
+				ViewModel/MockMovieViewModel.swift,
 			);
 			target = 188B4C6D2E5702A300066D11 /* MyMovieTests */;
 		};

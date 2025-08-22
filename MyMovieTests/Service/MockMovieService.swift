@@ -7,10 +7,12 @@
 
 import Foundation
 
+@testable import MyMovie
+
 final class MockMovieService: MovieServiceInterface {
     private var apiClientService: APIClientServiceInterface = APIClientService()
     var error: Error?
-    let movies: [Movie]
+    private let movies: [Movie]
     
     init(movies: [Movie], apiClientService: APIClientServiceInterface, error: Error? = nil) {
         self.apiClientService = apiClientService

@@ -12,13 +12,13 @@ struct MyMovieApp: App {
     let configuration = Configuration(apiClientService: APIClientService())
     var body: some Scene {
         WindowGroup {
-           MovieView(
-            viewModel: MovieViewModel(
-                movieService: MovieService(
-                    apiClientService: APIClientService()
+            MovieView(
+                viewModel: MovieViewModel(
+                    movieService: MovieService(
+                        apiClientService: APIClientService()
+                    )
                 )
             )
-           )
         }
     }
 }

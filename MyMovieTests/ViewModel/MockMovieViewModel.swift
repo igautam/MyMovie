@@ -16,8 +16,7 @@ final class MockMovieViewModel: ViewModelInterface {
     init(movieService: MovieServiceInterface) {
         self.movieService = movieService
     }
-    
-    
+        
     func loadData() async throws {
         state = .loading
         let movies = try await movieService.fetchMovies()

@@ -7,9 +7,7 @@
 
 import Foundation
 
-protocol MovieDetailServiceInterface {
-    // TODO: fetch geners
-}
+protocol MovieDetailServiceInterface {}
 
 final class MovieDetailService: MovieDetailServiceInterface {
     

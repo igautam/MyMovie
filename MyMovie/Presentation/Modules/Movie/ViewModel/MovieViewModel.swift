@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @MainActor
-final class MovieViewModel: ViewModelInterface {
+final class MovieViewModel: ObservableObject {
     private let movieService: MovieServiceInterface
     @Published var state: DataLoadingState = .idle
 

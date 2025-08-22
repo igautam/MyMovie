@@ -30,12 +30,6 @@ class ImageCacheViewModelTests: XCTestCase {
         do {
             try await sut?.loadImage()
             XCTAssertNotNil(sut?.image)
-            
-////            if let image = image {
-////                sut?.cacheImage(image, for: testImageURL)
-////            }
-////            let cachedImage = sut?.getCachedImage(for: testImageURL)
-//            XCTAssertNotNil(cachedImage, "error while fetching image from cache")
         } catch let error {
             XCTAssertNotNil(error, "No error while downloading image")
             XCTFail("Failed to download image")

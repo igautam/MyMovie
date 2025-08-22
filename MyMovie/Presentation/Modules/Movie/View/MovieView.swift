@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MovieView: View {
-    @ObservedObject var viewModel: MovieViewModel
-    @StateObject var router = Router()
+    @ObservedObject private var viewModel: MovieViewModel
+    @StateObject private var router = Router()
     init(viewModel: MovieViewModel) {
         self.viewModel = viewModel
     }
@@ -36,6 +36,7 @@ struct MovieView: View {
                 print("Error: \(error)")
             }
         }
+        .environmentObject(router)
     }
     @ViewBuilder
     private func contentView() -> some View {
@@ -65,17 +66,6 @@ struct MovieView: View {
 }
 
 #Preview {
-    let movie1 = Movie(
-        id: 755898,
-        title: "War of the Worlds_1",
-        overview: "Will Radford is a top analyst for Homeland Security who tracks potential threats",
-        posterPath: "/yvirUYrva23IudARHn3mMGVxWqM.jpg")
-    let movie2 = Movie(
-        id: 575265,
-        title: "Mission: Impossible - The Final Reckoning",
-        overview: "Ethan Hunt and team continue their search for the terrifying AI",
-        posterPath: "/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg")
-    
-    let service = MockMovieService(movies: [movie1, movie2], apiClientService: APIClientService())
+    let service = MovieService(apiClientService: APIClientService())
     MovieView(viewModel: MovieViewModel(movieService: service))
 }

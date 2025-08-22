@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @MainActor
-class MovieDetailViewModel: ViewModelInterface {
+class MovieDetailViewModel: ObservableObject {
     private let movieDetailService: MovieDetailServiceInterface
     @Published var state: DataLoadingState = .idle
 
@@ -17,7 +17,5 @@ class MovieDetailViewModel: ViewModelInterface {
         self.movieDetailService = movieDetailService
     }
     
-    func loadData() async throws {
-        // TODO: Fetch geners data through movieDetailService
-    }
+    func loadData() async throws { }
 }

@@ -11,8 +11,8 @@ import SwiftUI
 
 class MockImageCacheViewModel: ObservableObject {
     @Published var isLoading: Bool = false
-    @Published var image: UIImage? = nil
-    let imageUrlStr:String?
+    @Published var image: UIImage?
+    let imageUrlStr: String?
     
     init(imageUrlStr: String?) {
         self.imageUrlStr = imageUrlStr

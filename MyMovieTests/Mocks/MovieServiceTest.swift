@@ -1,0 +1,55 @@
+//
+//  MovieServiceTest.swift
+//  MyMovie
+//
+//  Created by Rajesh Kumar on 22/08/25.
+//
+import Testing
+import XCTest
+
+@testable import MyMovie
+
+@MainActor
+final class MovieServiceTest: XCTestCase {
+    var sut: MockMovieService?
+    var movies: [Movie] = []
+    
+    override func tearDown() {
+        sut = nil
+        super.tearDown()
+    }
+    // MARK: - Success scenario
+    // MARK: -
+    func testGetCountMovies_2Movies_2() async {
+        let movie1 = Movie(
+            id: 755898,
+            title: "War of the Worlds",
+            overview: "Will Radford is a top analyst for Homeland Security who tracks potential threats",
+            posterPath: "/yvirUYrva23IudARHn3mMGVxWqM.jpg")
+        let movie2 = Movie(
+            id: 575265,
+            title: "Mission: Impossible - The Final Reckoning",
+            overview: "Ethan Hunt and team continue their search for the terrifying AI",
+            posterPath: "/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg")
+        
+        sut = MockMovieService(movies: [movie1, movie2], apiClientService: APIClientService())
+        do {
+            if let movies = try await sut?.fetchMovies() {
+                XCTAssertTrue(movies.count == 2)
+            }
+        } catch { }
+    }
+    
+    // MARK: - Failure scenario
+    // MARK: -
+    func testGet_Movies_API_FailureRsponse_WithInvalidResponseFormat() async {
+        sut = MockMovieService(movies: [], apiClientService: APIClientService(), error: APIError.invalidURL)
+        do {
+            _ = try await sut?.fetchMovies()
+        } catch {
+            if let error = error as? APIError {
+                XCTAssertTrue(error == APIError.invalidURL)
+            }
+        }
+    }
+}
