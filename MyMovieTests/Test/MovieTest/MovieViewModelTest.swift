@@ -12,13 +12,7 @@ import XCTest
 
 @MainActor
 final class MovieViewModelTest: XCTestCase {
-    var sut: MovieViewModel?
-    var movies: [Movie] = []
     
-    override func tearDown() {
-        sut = nil
-        super.tearDown()
-    }
     // MARK: - Success scenario
     // MARK: -
     func testGetCountMovies_2Movies_2() async {
@@ -35,10 +29,10 @@ final class MovieViewModelTest: XCTestCase {
             posterPath: "/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg"
         )
         let service = MockMovieService(movies: [movie1, movie2], apiClientService: APIClientService())
-        sut = MovieViewModel(movieService: service)
+        let sut = MovieViewModel(movieService: service)
         do {
-            try await sut?.loadData()
-            if case let .loaded(movies) = sut?.state {
+            try await sut.loadData()
+            if case let .loaded(movies) = sut.state {
                 XCTAssertTrue(movies.count == 2)
             }
         } catch { }
@@ -48,9 +42,9 @@ final class MovieViewModelTest: XCTestCase {
     // MARK: -
     func testGet_Movies_API_FailureRsponse_WithInvalidResponseFormat() async {
         let service = MockMovieService(movies: [], apiClientService: APIClientService(), error: APIError.invalidURL)
-        sut = MovieViewModel(movieService: service)
+        let sut = MovieViewModel(movieService: service)
         do {
-            try await sut?.loadData()
+            try await sut.loadData()
         } catch {
             if let error = error as? APIError {
                 XCTAssertTrue(error == APIError.invalidURL)

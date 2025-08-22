@@ -12,17 +12,17 @@ import SwiftUI
 class MockImageCacheViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var image: UIImage?
-    let imageUrlStr: String?
+    private let imageUrl: String?
     
-    init(imageUrlStr: String?) {
-        self.imageUrlStr = imageUrlStr
+    init(imageUrl: String?) {
+        self.imageUrl = imageUrl
         Task {
             try await loadImage()
         }
     }
     
     func loadImage() async throws {
-        guard let imageURL = URL(string: imageUrlStr ?? "") else { return }
+        guard let imageURL = URL(string: imageUrl ?? "") else { return }
         let image = try await ImageCacheManager.shared.loadImage(for: imageURL)
         self.image = image
     }

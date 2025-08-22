@@ -45,7 +45,6 @@ class ImageCacheManagerTests: XCTestCase {
     
     // MARK: - Failure scenario
     // MARK: -
-    // Bad URL for image for testing bad request for image downloading.
     func testImageCached_Failure() async {
         guard let testURL = URL(string: "https://image.tmdb.org/t/p/w154/yvirUYrva23IudARHn3mMGVxWqM") else {
             return

@@ -26,9 +26,6 @@ struct MovieDetailView: View {
             Spacer()
         }
         .padding()
-        .onAppear {
-            print(router)
-        }
     }
 }
 

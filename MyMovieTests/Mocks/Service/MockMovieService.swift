@@ -11,7 +11,7 @@ import Foundation
 
 final class MockMovieService: MovieServiceInterface {
     private var apiClientService: APIClientServiceInterface = APIClientService()
-    var error: Error?
+    private let error: Error?
     private let movies: [Movie]
     
     init(movies: [Movie], apiClientService: APIClientServiceInterface, error: Error? = nil) {
