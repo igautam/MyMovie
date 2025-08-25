@@ -9,30 +9,43 @@ import SwiftUI
 
 struct MovieDetailView: View {
     @ObservedObject private var viewModel: MovieDetailViewModel
-    @EnvironmentObject private var router: Router
-    private let movie: Movie
     
-    init(movie: Movie, viewModel: MovieDetailViewModel) {
-        self.movie = movie
+    init(viewModel: MovieDetailViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        VStack(alignment: .center) {
-            Text("\(movie.title ?? "")")
-                .font(.system(size: 24, weight: .bold))
-            ImageView(imageUrl: movie.backdropMovieImageURL!)
-            Text(movie.overview ?? "")
-            Spacer()
+        ZStack {
+            Color.white
+                .ignoresSafeArea()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            VStack(alignment: .center) {
+                Text(viewModel.movieTitle)
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.black)
+                if let imageURL = viewModel.movieBackdropMovieImageURL {
+                    ImageView(imageUrl: imageURL)
+                }
+                Text(viewModel.movieOverView)
+                    .foregroundColor(.black)
+                Spacer()
+            }
+            .padding()
         }
-        .padding()
+        
     }
 }
 
 #Preview {
+    let movie = Movie(
+        id: 755898,
+        title: "War of the Worlds",
+        overview: "Will Radford is a top analyst for Homeland Security who tracks potential threats",
+        posterPath: "/yvirUYrva23IudARHn3mMGVxWqM.jpg",
+        backdropPath: "/yvirUYrva23IudARHn3mMGVxWqM.jpg")
     MovieDetailView(
-        movie: Movie(),
         viewModel: MovieDetailViewModel(
+            movie: movie,
             movieDetailService: MovieDetailService(
                 apiClientService: APIClientService()
             )

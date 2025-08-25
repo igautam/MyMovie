@@ -9,34 +9,38 @@ import SwiftUI
 
 struct MovieView: View {
     @ObservedObject private var viewModel: MovieViewModel
-    @StateObject private var router = Router()
+    @StateObject private var coordinator: Coordinator = Coordinator()
+    @EnvironmentObject private var configuration: Configuration
+    
     init(viewModel: MovieViewModel) {
         self.viewModel = viewModel
     }
+    
     private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     var body: some View {
-        NavigationStack(path: $router.navPath) {
-            contentView()
-                .navigationTitle("Movies")
-                .navigationDestination(for: Destination.self) { destination in
-                    self.viewModel.view(for: destination)
-                }
-        }
-        .onAppear {
-            print("OnAppear call")
+        NavigationStack(path: $coordinator.navPath) {
+            ZStack {
+                Color.white
+                    .ignoresSafeArea()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                contentView()
+            }
+            .navigationTitle("Movies")
+            .navigationDestination(for: Destination.self) { destination in
+                coordinator.buildView(for: destination, configuration: configuration)
+            }
         }
         .task {
-            print("task call")
             do {
                 try await viewModel.loadData()
             } catch {
                 print("Error: \(error)")
             }
         }
-        .environmentObject(router)
+        .environmentObject(coordinator)
     }
     @ViewBuilder
     private func contentView() -> some View {
@@ -53,7 +57,7 @@ struct MovieView: View {
                         HStack {
                             MovieCardView(movie: movie)
                                 .onTapGesture {
-                                    router.navigate(to: Destination.movieDetail(movie: movie))
+                                    coordinator.navigate(to: Destination.movieDetail(movie: movie))
                                 }
                         }
                     }

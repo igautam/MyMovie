@@ -19,12 +19,14 @@ final class MovieServiceTest: XCTestCase {
             id: 755898,
             title: "War of the Worlds",
             overview: "Will Radford is a top analyst for Homeland Security who tracks potential threats",
-            posterPath: "/yvirUYrva23IudARHn3mMGVxWqM.jpg")
+            posterPath: "/yvirUYrva23IudARHn3mMGVxWqM.jpg",
+            backdropPath: "/yvirUYrva23IudARHn3mMGVxWqM.jpg")
         let movie2 = Movie(
             id: 575265,
             title: "Mission: Impossible - The Final Reckoning",
             overview: "Ethan Hunt and team continue their search for the terrifying AI",
-            posterPath: "/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg")
+            posterPath: "/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg",
+            backdropPath: "/yvirUYrva23IudARHn3mMGVxWqM.jpg")
         
         let sut: MockMovieService = MockMovieService(movies: [movie1, movie2], apiClientService: APIClientService())
         do {

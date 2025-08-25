@@ -10,11 +10,9 @@ import Foundation
 protocol MovieDetailServiceInterface {}
 
 final class MovieDetailService: MovieDetailServiceInterface {
-    
     private let apiClientService: APIClientServiceInterface
     
     init(apiClientService: APIClientServiceInterface) {
         self.apiClientService = apiClientService
     }
-    
 }

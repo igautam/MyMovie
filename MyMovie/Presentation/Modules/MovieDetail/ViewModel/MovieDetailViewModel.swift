@@ -11,18 +11,19 @@ import SwiftUI
 @MainActor
 class MovieDetailViewModel: ObservableObject {
     private let movieDetailService: MovieDetailServiceInterface
-    @Published var state: DataLoadingState = .idle
-
-    init(movieDetailService: MovieDetailServiceInterface) {
-        self.movieDetailService = movieDetailService
+    private let movie: Movie
+    var movieTitle: String {
+        movie.title ?? ""
+    }
+    var movieBackdropMovieImageURL: String? {
+        movie.backdropMovieImageURL
+    }
+    var movieOverView: String {
+        movie.overview ?? ""
     }
     
-    enum DataLoadingState {
-        case idle
-        case loading
-        case loaded([Movie])
-        case error(Error)
+    init(movie: Movie, movieDetailService: MovieDetailServiceInterface) {
+        self.movie = movie
+        self.movieDetailService = movieDetailService
     }
-
-    func loadData() async throws { }
 }

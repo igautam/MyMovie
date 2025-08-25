@@ -29,19 +29,4 @@ final class MovieViewModel: ObservableObject {
         let movies = try await movieService.fetchMovies()
         state = .loaded(movies)
     }
-    
-    @ViewBuilder
-    func view(for destination: Destination) -> some View {
-        switch destination {
-        case .movieDetail(let movie):
-            MovieDetailView(
-                movie: movie,
-                viewModel: MovieDetailViewModel(
-                    movieDetailService: MovieDetailService(
-                        apiClientService: APIClientService()
-                    )
-                )
-            )
-        }
-    }
 }
