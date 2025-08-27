@@ -32,5 +32,8 @@ Project Architectural Details:
 * Mock MyMovie Test object is created in order to perform test scenarios.
 * Added SwiftLint for coding style and conventions.
 
+<img width="301" height="643" alt="Screenshot 2025-08-21 at 4 57 27 PM" src="https://github.com/user-attachments/assets/8404bc54-08ad-4903-936a-debc866f68a1" />
+
+<img width="301" height="649" alt="Screenshot 2025-08-21 at 4 58 08 PM" src="https://github.com/user-attachments/assets/e5de65a4-de77-4536-84ae-d81178166456" />
 
 
